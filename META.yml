@@ -17,4 +17,4 @@ requires:
   XML::Compile::SOAP: 2.03
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.00_01
+version: 0.00_03

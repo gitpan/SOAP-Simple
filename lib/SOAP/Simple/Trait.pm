@@ -22,6 +22,7 @@ sub add_wsdl {
       operation => $operation->{ name },
       service   => $service->{ name },
       port      => $port->{ name },
+      interpret_nillable_as_optional => 1,
     );
 
     $self->add_method ($operation->{ name } => sub { shift; goto $client });

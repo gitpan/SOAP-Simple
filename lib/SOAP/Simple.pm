@@ -5,10 +5,24 @@ use Moose;
 use Moose::Meta::Class;
 use SOAP::Simple::Base;
 
-our $VERSION = '0.00_01';
+our $VERSION = '0.00_03';
 
 sub new {
-  my ($class,$wsdl,%options) = @_;
+  shift;
+
+  my ($wsdl,%options);
+
+  if (@_ % 2) {
+    if (ref $_[0] eq 'HASH') {
+      %options = %{ shift () };
+    } else {
+      $wsdl = shift;
+    }
+  } else {
+    %options = @_;
+  }
+
+  $wsdl ||= $options{ wsdl };
 
   my $new_metaclass = Moose::Meta::Class->create_anon_class (superclasses => [ 'SOAP::Simple::Base' ]);
 
